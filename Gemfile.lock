@@ -1,0 +1,54 @@
+GIT
+  remote: git@github.com:CompanyBook/massive_record.git
+  revision: 91f16dadd331f25fc47f6a8288d709c3578f8080
+  specs:
+    massive_record (0.0.1)
+      activemodel
+      activesupport
+      thrift (>= 0.5.0)
+
+GIT
+  remote: https://github.com/feedbackmine/language_detector.git
+  revision: de34cd4e86f2598714b808b8e42a9496466aa01a
+  specs:
+    language_detector (0.1.2)
+
+GEM
+  specs:
+    activemodel (3.0.1)
+      activesupport (= 3.0.1)
+      builder (~> 2.1.2)
+      i18n (~> 0.4.1)
+    activesupport (3.0.1)
+    builder (2.1.2)
+    classifier (1.3.3)
+      fast-stemmer (>= 1.0.0)
+    diff-lcs (1.1.2)
+    fast-stemmer (1.0.0)
+    i18n (0.4.1)
+    log4r (1.1.9)
+    nokogiri (1.4.3.1)
+    rsolr (0.12.1)
+      builder (>= 2.1.2)
+    rspec (2.2.0)
+      rspec-core (~> 2.2)
+      rspec-expectations (~> 2.2)
+      rspec-mocks (~> 2.2)
+    rspec-core (2.2.1)
+    rspec-expectations (2.2.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.2.0)
+    thrift (0.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  classifier
+  language_detector!
+  log4r
+  massive_record!
+  nokogiri
+  rsolr
+  rspec
+  rspec-core
