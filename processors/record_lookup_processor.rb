@@ -2,7 +2,7 @@ require_relative 'content_processor'
 
 module Indexer
   class RecordLookupProcessor < ContentProcessor
-
+    attr_accessor :key_mapping, :key_field, :data_source
     def initialize(data_source, key_field = :id, key_mapping = {})
       raise 'Not a datasource' if not data_source.is_a? DataSource
       @data_source = data_source

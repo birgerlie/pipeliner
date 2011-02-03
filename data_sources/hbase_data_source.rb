@@ -14,7 +14,6 @@ module Indexer
       @column_families   =options[:columns] || []
       @table_initialized = initialize_table
 
-
       puts "initialized options=> #{options}"
     end
 
@@ -33,11 +32,14 @@ module Indexer
       tries =0
       done = false
       data = []
+      max_rows = 20
       while(!done and tries < 2)
         begin
-          data = @connection.tables.load(@table_name).all(:start=>key, :select=>@column_families)
-          done = true
-
+          tmp = @connection.tables.load(@table_name).all(:start=>key, :select=>@column_families, :limit=>max_rows)
+          res = tmp.select{|row| row.id.scan(key).count> 0}
+          done = true if res.length != max_rows
+          data << tmp
+          
         rescue Apache::Hadoop::Hbase::Thrift::IOError => ex
           tries +=1
           info_message(ex)
@@ -46,7 +48,7 @@ module Indexer
         end
         
       end
-
+      data.flatten!
       data.select {|row| row.id.scan(key).count > 0}
     end
 
@@ -60,7 +62,7 @@ module Indexer
     def table_exist?
       @connection.tables.select { |table| table == @table_name }
     end
-
+    
   end
 end
 

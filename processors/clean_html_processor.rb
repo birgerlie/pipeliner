@@ -35,9 +35,9 @@ module Indexer
       doc.css('link').each { |node| node.remove }
       text = doc.css('body').text.squeeze(" ").squeeze("\n")
       #tokenize sentences so sentence boundaries are detected better
-      text.gsub!("\r", '')
+      #text.gsub!("\r", '')
       text.gsub!("\t", '')
-      text.gsub!("\n", '')
+      #text.gsub!("\n", '')
       rescue Exception =>e
         puts e
         return {:html_title=> '', :html_meta=>'', :html_text=>''}

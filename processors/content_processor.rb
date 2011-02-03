@@ -1,15 +1,15 @@
 require_relative "../event_handler"
+require_relative "../data_flow/vertex"
 
 module Indexer
-  class ContentProcessor
+  class ContentProcessor < Vertex
     attr_accessor :name
     include EventHandler
 
     def initialize(name=self.class.name)
       @name = name
     end
-
-
+    
     def exec(document)
       assert_document(document)
       process (document)

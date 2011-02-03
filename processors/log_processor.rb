@@ -30,7 +30,7 @@ class LogProcessor < ContentProcessor
   end
 
   def emit(field_name, field_value)
-    puts "#{field_name } => #{field_value.to_s}"
+    puts   "Logger:  #{field_name } => #{field_value.to_s}"
   end
 end
 end
