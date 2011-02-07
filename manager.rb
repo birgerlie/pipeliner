@@ -43,6 +43,7 @@ module Indexer
         puts "indexing starting #{a}"
       end
       connector.attach_new_document_listener(method(:process_pipeline))
+
       connector.attach_connector_complete do |a|
         puts "indexing complete #{a}"
       end
@@ -70,9 +71,13 @@ module Indexer
       #puts 'pipeline recieved: ' + document.to_s + " from "  + sender.to_s
       documents = @dag.process document
 
+      count =0
       documents.each do |doc|
-      @search_engines.each {|engine| engine.publish(doc)}
+        @search_engines.each {|engine| engine.publish(doc)}
+        count +=1
       end
+
+      puts "indexed #{count} pages for document: #{document['DOCUMENT_ID']}"
     end
 
 

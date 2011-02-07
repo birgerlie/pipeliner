@@ -31,7 +31,7 @@ module Indexer
       tries =0
       done = false
       data = []
-      return data if key == nil || ''
+      return data if key == (nil || '')
       
       max_rows = 100
       while(!done and tries < 2 &&data.length < max_rows)
