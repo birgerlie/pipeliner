@@ -11,7 +11,7 @@ module Indexer
     def process(doc)
       
       new_doc = {
-          :url=>doc[:page_url] || '/companies/'+ doc["id"],
+          :url=>doc[:page_url] || '',
           :title=>doc[:html_title] || doc['info:name'],
           :org_num=>doc['info:org_num'],
           :country=>doc['info:country_iso'],
@@ -27,7 +27,7 @@ module Indexer
           :row_id =>doc['id'],
           :page_url_s =>doc['info:web_address'],
           :org_code=>doc['info:code'],
-       #   :ngrams_a=>doc[:n_grams],
+          :company_id=>doc['id'],
           :profit_before_tax =>doc[:profit_before_tax].to_i || 0
       }
       new_doc[:geo_location] = "#{doc['info:lat']},#{doc['info:lng']}" if doc['info:lng'] != nil and doc['info:lat'] != nil
