@@ -26,20 +26,26 @@ module Indexer
       true
     end
 
-
     def fetch(key)
       initialize_table unless @table_initialized
       tries =0
       done = false
       data = []
-      max_rows = 20
-      while(!done and tries < 2)
+      return data if key == nil || ''
+      
+      max_rows = 100
+      while(!done and tries < 2 &&data.length < max_rows)
         begin
           tmp = @connection.tables.load(@table_name).all(:start=>key, :select=>@column_families, :limit=>max_rows)
-          res = tmp.select{|row| row.id.scan(key).count> 0}
-          done = true if res.length != max_rows
-          data << tmp
-          
+          tmp.each do |row|
+            if row.id.starts_with? key
+              data<<row
+            else
+              done =true
+              return data
+            end
+          end
+
         rescue Apache::Hadoop::Hbase::Thrift::IOError => ex
           tries +=1
           info_message(ex)
@@ -62,7 +68,6 @@ module Indexer
     def table_exist?
       @connection.tables.select { |table| table == @table_name }
     end
-    
   end
 end
 
