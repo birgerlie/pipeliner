@@ -105,8 +105,8 @@ module Indexer
 
       search_engines    =
           [
-          SolrSearch.new({:connection_args=>{:server=>'http://46.51.180.198:8983/solr/company_' + deployment_type  }, :name=>'company_' + deployment_type}),
-          #SolrSearch.new({:connection_args=>{:server=>'http://46.51.180.198:8983/solr/company_test'}, :name=>'company_test'} )
+          #SolrSearch.new({:connection_args=>{:server=>'http://46.51.180.198:8983/solr/company_' + deployment_type  }, :name=>'company_' + deployment_type}),
+          SolrSearch.new({:connection_args=>{:server=>'http://46.51.180.198:8983/solr/company_test'}, :name=>'company_test'} )
           ]
       Manager.new(connectors, processors, search_engines)
     end
