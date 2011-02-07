@@ -23,7 +23,7 @@ module Indexer
     def start
       table = Table.new(@connection, @table)
       info_message("indexing on table #{@table},reading #{@columns}")
-      params  = {:select=>@columns,:start=>'NO0000000833354922', :limit=>1 }
+      params  = {:select=>@columns}
       last_id = nil
       tries   = 0
       success = false
